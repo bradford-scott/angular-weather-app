@@ -23,9 +23,9 @@ export class OpenweathermapService {
     );
   }
 
-  getWeatherByLatAndLon(lat, long) {
+  getWeatherByLatAndLon(values) {
     return this.http.get(
-      'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long +
+      'https://api.openweathermap.org/data/2.5/weather?lat=' + values.locationByLat + '&lon=' + values.locationByLon +
       '&appid=cf002751564a4c78f5f7ed479f1b9ba3'
     );
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import { OpenweathermapService } from '../openweathermap.service';
 
 @Component({
@@ -10,10 +10,12 @@ import { OpenweathermapService } from '../openweathermap.service';
 export class WeatherComponent implements OnInit {
   public cityWeatherSearch: FormGroup;
   public cityCountryWeatherSearch: FormGroup;
-  public latAndLonWeatherSearch: FormGroup;
   public weatherData: any;
-  locationByLat: any;
-  locationByLon: any;
+
+  latAndLonForm = new FormGroup({
+    locationByLat: new FormControl(''),
+    locationByLon: new FormControl(''),
+  });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,33 +30,37 @@ export class WeatherComponent implements OnInit {
     this.cityCountryWeatherSearch = this.formBuilder.group({
       locationByCityAndCountry: ['']
     });
-    this.latAndLonWeatherSearch = this.formBuilder.group( {
-      locationByLat: '',
-      locationByLon: ''
-    });
   }
 
   sendCityToOpenWeatherMap(formValues) {
     this.openweathermapService
       .getWeather(formValues.locationByCity)
-      .subscribe(data => this.weatherData = data);
-    this.cityWeatherSearch.reset();
+      .subscribe((data: any) => {
+        if (data) {
+          this.weatherData = data.list[0];
+        }
+      });
     console.log(this.weatherData);
+    this.cityWeatherSearch.reset();
   }
 
   sendCityStateToOpenWeatherMap(formValues) {
     this.openweathermapService
       .getWeatherByCityAndCountry(formValues.locationByCityAndCountry)
-      .subscribe(data => this.weatherData = data);
-    this.cityCountryWeatherSearch.reset();
+      .subscribe((data: any) => {
+        if (data) {
+          this.weatherData = data.list[0];
+        }
+      });
     console.log(this.weatherData);
+    this.cityCountryWeatherSearch.reset();
   }
 
-  sendLatAndLonToOpenWeatherMap(locationByLat, locationByLon) {
+  sendLatAndLonToOpenWeatherMap(formValues) {
     this.openweathermapService
-      .getWeatherByLatAndLon(locationByLat, locationByLon)
+      .getWeatherByLatAndLon(formValues.value)
       .subscribe(data => this.weatherData = data);
-    this.latAndLonWeatherSearch.reset();
     console.log(this.weatherData);
+    this.latAndLonForm.reset();
   }
 }
