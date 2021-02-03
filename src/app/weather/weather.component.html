@@ -1,3 +1,50 @@
-<p>
-  weather works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="text-center my-4">Search for Weather:</h3>
+      <form [formGroup]="weatherSearchForm" (ngSubmit)="sendToAPIXU(weatherSearchForm.value)">
+        <div class="form-group">
+          <label for="weatherLocation"></label>
+          <input
+            class="form-control"
+            type="text"
+            id="weatherLocation"
+            aria-describedby="weatherLocation"
+            placeholder="Please input a Location"
+            formControlName="location"
+          />
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success btn-md">
+            Search for the weather
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <h3 class="text-center my-4">Weather Details:</h3>
+      <p class="text-center">
+        Current weather conditions: {{ this.weatherData?.list[0].weather[0].description
+        }}.
+      </p>
+      <p class="text-center">
+        Temperature in Degrees (Imperial/Farenheit): {{ this.weatherData?.list[0].main.temp }}
+      </p>
+      <p class="text-center">
+        Feels Like: {{ this.weatherData?.list[0].main.feels_like }}
+      </p>
+      <p class="text-center">
+        Humidity: {{ this.weatherData?.list[0].main.humidity }}
+      </p>
+      <p class="text-center">
+        Pressure: {{ this.weatherData?.list[0].main.pressure }}
+      </p>
+      <p class="text-center">
+        City Searched: {{ this.weatherData?.list[0].name }}
+      </p>
+      <p class="text-center">
+        Country Searched: {{ this.weatherData?.list[0].sys.country }}
+      </p>
+    </div>
+  </div>
+</div>
