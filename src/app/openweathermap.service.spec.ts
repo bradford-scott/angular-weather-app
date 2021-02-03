@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ApixuService } from './apixu.service';
+import { OpenweathermapService } from './openweathermap.service';
 
 describe('ApixuService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ApixuService = TestBed.get(ApixuService);
+    const service: OpenweathermapService = TestBed.get(OpenweathermapService);
     expect(service).toBeTruthy();
   });
 });

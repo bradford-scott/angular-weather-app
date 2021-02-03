@@ -1,34 +1,94 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <h3 class="text-center my-4">Search for Weather:</h3>
-      <form [formGroup]="weatherSearchForm" (ngSubmit)="sendToAPIXU(weatherSearchForm.value)">
+      <h3 class="text-center my-4">Search for Weather by City:</h3>
+      <form [formGroup]="cityWeatherSearch" (ngSubmit)="sendCityToOpenWeatherMap(cityWeatherSearch.value)">
         <div class="form-group">
-          <label for="weatherLocation"></label>
+          <label for="weatherLocationByCity"></label>
           <input
             class="form-control"
             type="text"
-            id="weatherLocation"
+            id="weatherLocationByCity"
             aria-describedby="weatherLocation"
-            placeholder="Please input a Location"
-            formControlName="location"
+            placeholder="Please input a City"
+            formControlName="locationByCity"
           />
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn-success btn-md">
-            Search for the weather
+            Search for weather
           </button>
         </div>
       </form>
+      <br>
+      <br>
+      <h3 class="text-center my-4">Search for Weather by City and Country:</h3>
+      <form [formGroup]="cityCountryWeatherSearch" (ngSubmit)="sendCityStateToOpenWeatherMap(cityCountryWeatherSearch.value)">
+        <div class="form-group">
+          <label for="weatherLocationByCityAndCountry"></label>
+          <input
+            class="form-control"
+            type="text"
+            id="weatherLocationByCityAndCountry"
+            aria-describedby="weatherLocation"
+            placeholder="Please input a City and Country abbreviation - EX: London, GB"
+            formControlName="locationByCityAndCountry"
+          />
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success btn-md">
+            Search for weather
+          </button>
+        </div>
+      </form>
+      <br>
+      <br>
+      <h3 class="text-center my-4">Search for Weather by Latitude/Longitude:</h3>
+
+      <form [formGroup]="latAndLonWeatherSearch" (ngSubmit)="sendLatAndLonToOpenWeatherMap(locationByLat.value, locationByLon.value)">
+        <div>
+          <label for="locationByLat"></label>
+          <input
+            class="form-control"
+            type="number"
+            ng-pattern="/^(0|\-?[1-9][0-9]*)$/"
+            id="locationByLat"
+            aria-describedby="weatherLocation"
+            placeholder="Please input latitude..."
+            formControlName="locationByLat"
+          />
+        </div>
+
+        <div>
+          <label for="locationByLon"></label>
+          <input
+            class="form-control"
+            type="number"
+            ng-pattern="/^(0|\-?[1-9][0-9]*)$/"
+            id="locationByLon"
+            aria-describedby="weatherLocation"
+            placeholder="Please input longitude..."
+            formControlName="locationByLon"
+          />
+        </div>
+
+        <br>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success btn-md">
+            Search for weather
+          </button>
+        </div>
+      </form>
+
     </div>
     <div class="col-md-6">
       <h3 class="text-center my-4">Weather Details:</h3>
       <p class="text-center">
         Current weather conditions: {{ this.weatherData?.list[0].weather[0].description
-        }}.
+        }}
       </p>
       <p class="text-center">
-        Temperature in Degrees (Imperial/Farenheit): {{ this.weatherData?.list[0].main.temp }}
+        Temperature in Degrees (Imperial/Fahrenheit): {{ this.weatherData?.list[0].main.temp }}
       </p>
       <p class="text-center">
         Feels Like: {{ this.weatherData?.list[0].main.feels_like }}

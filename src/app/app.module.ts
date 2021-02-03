@@ -8,7 +8,7 @@ import {RouterModule} from '@angular/router';
 import {allAppRoutes} from './routes';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ApixuService } from './apixu.service';
+import { OpenweathermapService } from './openweathermap.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { ApixuService } from './apixu.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ApixuService],
+  providers: [OpenweathermapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
