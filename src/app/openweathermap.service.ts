@@ -23,11 +23,17 @@ export class OpenweathermapService {
     );
   }
 
-  getWeatherByZipcode(values) {
+  getWeatherByZip(values) {
     return this.http.get(
-      'https://api.openweathermap.org/data/2.5/weather?zip=' + values.zipCode + ',' + values.countryCode + '&appid={API key}'
-      // 'https://api.openweathermap.org/data/2.5/weather?lat=' + values.locationByLat + '&lon=' + values.locationByLon +
-      // '&units=imperial&appid=cf002751564a4c78f5f7ed479f1b9ba3'
+      'https://api.openweathermap.org/data/2.5/weather?zip=' + values.locationByZip +
+      '&units=imperial&appid=cf002751564a4c78f5f7ed479f1b9ba3'
+    );
+  }
+
+  getWeatherByZipAndCountry(values) {
+    return this.http.get(
+      'https://api.openweathermap.org/data/2.5/weather?zip=' + values.locationByZip + ',' + values.locationByCountry +
+      '&units=imperial&appid=cf002751564a4c78f5f7ed479f1b9ba3'
     );
   }
 

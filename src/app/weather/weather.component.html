@@ -1,11 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-
-      <h3 class="text-center my-4">Search for Weather by City:</h3>
       <form [formGroup]="cityWeatherSearch" (ngSubmit)="sendCityToOpenWeatherMap(cityWeatherSearch.value)">
         <div class="form-group">
           <label for="weatherLocationByCity"></label>
+          <h5 class="text-center my-3">Search for Weather by City:</h5>
           <input
             class="form-control"
             type="text"
@@ -22,13 +21,10 @@
         </div>
       </form>
 
-      <br>
-      <br>
-
-      <h3 class="text-center my-4">Search for Weather by City and Country:</h3>
       <form [formGroup]="cityCountryWeatherSearch" (ngSubmit)="sendCityStateToOpenWeatherMap(cityCountryWeatherSearch.value)">
         <div class="form-group">
           <label for="weatherLocationByCityAndCountry"></label>
+          <h5 class="text-center my-3">Search for Weather by City and Country:</h5>
           <input
             class="form-control"
             type="text"
@@ -45,33 +41,39 @@
         </div>
       </form>
 
-      <br>
-      <br>
-      <h1>Angular Select Dropdown Example - ItSolutionStuff.com</h1>
-
-      <form [formGroup]="form" (ngSubmit)="submit()">
-
+      <form [formGroup]="zipCountryForm" (ngSubmit)="sendZipAndCountryToOpenWeatherMap(zipCountryForm)">
         <div class="form-group">
-          <label for="website">Website:</label>
-          <select formControlName="website" class="form-control">
-            <option disabled>Select Website</option>
-            <option>Choose Website</option>
-            <option *ngFor="let web of websiteList">{{web}}</option>
-          </select>
-          <div *ngIf="f.website.touched && f.website.invalid" class="alert alert-danger">
-            <div *ngIf="f.website.errors.required">Name is required.</div>
-          </div>
+          <label for="locationByZip"></label>
+          <h5 class="text-center my-3">Search for Weather by Zip/Country Code:</h5>
+          <input
+            class="form-control"
+            type="text"
+            id="locationByZip"
+            aria-describedby="weatherLocation"
+            placeholder="Please input zip code - EX: 63028"
+            formControlName="locationByZip"
+          />
+          <label for="locationByCountry"></label>
+          <input
+            class="form-control"
+            type="text"
+            id="locationByCountry"
+            aria-describedby="weatherLocation"
+            placeholder="If zip outside US, input country code - EX: CA, GB, CN"
+            formControlName="locationByCountry"
+          />
         </div>
-
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success btn-md">
+            Search for weather
+          </button>
+        </div>
       </form>
-      <br>
-      <br>
 
-      <h3 class="text-center my-4">Search for Weather by Latitude/Longitude:</h3>
       <form [formGroup]="latAndLonForm" (ngSubmit)="sendLatAndLonToOpenWeatherMap(latAndLonForm)">
-        <div>
+        <div class="form-group">
           <label for="locationByLat"></label>
+          <h5 class="text-center my-3">Search for Weather by Latitude/Longitude:</h5>
           <input
             class="form-control"
             type="number"
@@ -80,9 +82,6 @@
             placeholder="Please input latitude - EX: '38' or '-22'"
             formControlName="locationByLat"
           />
-        </div>
-
-        <div>
           <label for="locationByLon"></label>
           <input
             class="form-control"
@@ -93,19 +92,17 @@
             formControlName="locationByLon"
           />
         </div>
-
-        <br>
         <div class="text-center">
           <button type="submit" class="btn btn-success btn-md">
             Search for weather
           </button>
         </div>
       </form>
-
     </div>
-    <div class="col-md-6">
-      <h3 class="text-center my-4">Weather Details:</h3>
+
+    <div class="col-md-6" style="float:right;margin:auto;">
       <div *ngIf="this.weatherData">
+        <h5 class="text-center my-4">Weather Details:</h5>
       <p class="text-center">
         Current weather conditions: {{ this.weatherData.weather[0].description
         }}
