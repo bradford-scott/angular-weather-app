@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display get search by city header', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to angular-weather-app!');
+    expect(page.getSearchByCityHeaderText()).toEqual('Search for Weather by City:');
   });
 
   afterEach(async () => {

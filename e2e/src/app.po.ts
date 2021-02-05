@@ -5,7 +5,7 @@ export class AppPage {
     return browser.get(browser.baseUrl) as Promise<any>;
   }
 
-  getTitleText() {
-    return element(by.css('app-root h1')).getText() as Promise<string>;
+  getSearchByCityHeaderText() {
+    return element(by.xpath('//form[1]/div[1]/h5')).getText() as Promise<string>;
   }
 }

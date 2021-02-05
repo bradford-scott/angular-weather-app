@@ -1,6 +1,15 @@
-# AngularWeatherApp
+# Application Runtime Requirements
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
+Node version `10.13.0` or higher and npm version `6.9.0` or higher  
+    - Execute `npm install` from the root directory  
+    - Once your dependencies are installed execute commands listed below for run, unit-test, or e2e testing purposes
+    
+# Execute Application From Dist/Build
+
+Run following commands:  
+    - `npm install angular-http-server -g` This installs the angular http server to serve the app  
+    - `angular-http-server --path {path to index.html in dist}` EX: `angular-http-server --path ./dist/angular-weather-app`  
+    - This will serve the application on `localhost:8080`
 
 ## Development server
 
