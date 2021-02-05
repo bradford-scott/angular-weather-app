@@ -7,6 +7,7 @@ Node version `10.13.0` or higher and npm version `6.9.0` or higher
 # Execute Application From Dist/Build
 
 Run following commands:  
+    - Execute `ng build` to create a dist directory for execution from build  
     - `npm install angular-http-server -g` This installs the angular http server to serve the app  
     - `angular-http-server --path {path to index.html in dist}` EX: `angular-http-server --path ./dist/angular-weather-app`  
     - This will serve the application on `localhost:8080`
