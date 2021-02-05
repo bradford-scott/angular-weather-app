@@ -13,6 +13,12 @@ describe('workspace-project App', () => {
     expect(page.getSearchByCityHeaderText()).toEqual('Search for Weather by City:');
   });
 
+  it('should perform search by city and validate a result is displayed', () => {
+    page.performSearchByCity();
+    expect(page.getCityInformation()).toEqual('City Searched: St. Louis');
+    expect(page.getCountryInformation()).toEqual('Country Searched: US');
+  });
+
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
