@@ -49,7 +49,7 @@ export class WeatherComponent implements OnInit {
     this.cityWeatherSearch.reset();
   }
 
-  sendCityStateToOpenWeatherMap(formValues) {
+  sendCityCountryToOpenWeatherMap(formValues) {
     this.openweathermapService
       .getWeatherByCityAndCountry(formValues.locationByCityAndCountry)
       .subscribe((data: any) => {

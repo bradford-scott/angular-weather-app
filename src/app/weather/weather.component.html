@@ -21,7 +21,7 @@
         </div>
       </form>
 
-      <form [formGroup]="cityCountryWeatherSearch" (ngSubmit)="sendCityStateToOpenWeatherMap(cityCountryWeatherSearch.value)">
+      <form [formGroup]="cityCountryWeatherSearch" (ngSubmit)="sendCityCountryToOpenWeatherMap(cityCountryWeatherSearch.value)">
         <div class="form-group">
           <label for="weatherLocationByCityAndCountry"></label>
           <h5 class="text-center my-3">Search for Weather by City and Country:</h5>
