@@ -6,12 +6,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class OpenweathermapService {
 
+  apiKey = 'cf002751564a4c78f5f7ed479f1b9ba3';
+
   constructor(private http: HttpClient) { }
   getWeather(locationByCity) {
     return this.http.get(
       'https://api.openweathermap.org/data/2.5/find?q='
       + locationByCity +
-      '&units=imperial&appid=cf002751564a4c78f5f7ed479f1b9ba3'
+      '&units=imperial&appid=' + this.apiKey
     );
   }
 
@@ -19,28 +21,28 @@ export class OpenweathermapService {
     return this.http.get(
       'https://api.openweathermap.org/data/2.5/find?q='
       + locationByCityAndCountry +
-      '&units=imperial&appid=cf002751564a4c78f5f7ed479f1b9ba3'
+      '&units=imperial&appid=' + this.apiKey
     );
   }
 
   getWeatherByZip(values) {
     return this.http.get(
       'https://api.openweathermap.org/data/2.5/weather?zip=' + values.locationByZip +
-      '&units=imperial&appid=cf002751564a4c78f5f7ed479f1b9ba3'
+      '&units=imperial&appid=' + this.apiKey
     );
   }
 
   getWeatherByZipAndCountry(values) {
     return this.http.get(
       'https://api.openweathermap.org/data/2.5/weather?zip=' + values.locationByZip + ',' + values.locationByCountry +
-      '&units=imperial&appid=cf002751564a4c78f5f7ed479f1b9ba3'
+      '&units=imperial&appid=' + this.apiKey
     );
   }
 
   getWeatherByLatAndLon(values) {
     return this.http.get(
       'https://api.openweathermap.org/data/2.5/weather?lat=' + values.locationByLat + '&lon=' + values.locationByLon +
-      '&units=imperial&appid=cf002751564a4c78f5f7ed479f1b9ba3'
+      '&units=imperial&appid=' + this.apiKey
     );
   }
 }
