@@ -10,17 +10,9 @@ import { OpenweathermapService } from '../openweathermap.service';
 export class WeatherComponent implements OnInit {
   public cityWeatherSearch: FormGroup;
   public cityCountryWeatherSearch: FormGroup;
+  public zipCountryForm: FormGroup;
+  public latAndLonForm: FormGroup;
   public weatherData: any;
-
-  latAndLonForm = new FormGroup({
-    locationByLat: new FormControl(''),
-    locationByLon: new FormControl('')
-  });
-
-  zipCountryForm = new FormGroup( {
-    locationByZip: new FormControl(''),
-    locationByCountry: new FormControl('')
-  });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,8 +24,19 @@ export class WeatherComponent implements OnInit {
     this.cityWeatherSearch = this.formBuilder.group({
       locationByCity: ['']
     });
+
     this.cityCountryWeatherSearch = this.formBuilder.group({
       locationByCityAndCountry: ['']
+    });
+
+    this.zipCountryForm = new FormGroup( {
+      locationByZip: new FormControl(''),
+      locationByCountry: new FormControl('')
+    });
+
+    this.latAndLonForm = new FormGroup({
+      locationByLat: new FormControl(''),
+      locationByLon: new FormControl('')
     });
   }
 
