@@ -48,7 +48,6 @@ export class WeatherComponent implements OnInit {
           this.weatherData = data.list[0];
         }
       });
-    console.log(this.weatherData);
     this.cityWeatherSearch.reset();
   }
 
@@ -60,7 +59,6 @@ export class WeatherComponent implements OnInit {
           this.weatherData = data.list[0];
         }
       });
-    console.log(this.weatherData);
     this.cityCountryWeatherSearch.reset();
   }
 
@@ -74,7 +72,6 @@ export class WeatherComponent implements OnInit {
         .getWeatherByZipAndCountry(formValues.value)
         .subscribe(data => this.weatherData = data);
     }
-    console.log(this.weatherData);
     this.zipCountryForm.reset();
   }
 
@@ -82,7 +79,6 @@ export class WeatherComponent implements OnInit {
     this.openweathermapService
       .getWeatherByLatAndLon(formValues.value)
       .subscribe(data => this.weatherData = data);
-    console.log(this.weatherData);
     this.latAndLonForm.reset();
   }
 }
