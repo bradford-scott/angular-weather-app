@@ -21,16 +21,20 @@ export class WeatherComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cityWeatherSearch = this.formBuilder.group({
-      locationByCity: ['']
+    this.cityWeatherSearch = new FormGroup({
+      locationByCity: new FormControl('')
     });
 
-    this.cityCountryWeatherSearch = this.formBuilder.group({
-      locationByCityAndCountry: ['']
+    this.cityCountryWeatherSearch = new FormGroup({
+      locationByCityAndCountry: new FormControl('')
     });
 
     this.zipCountryForm = new FormGroup({
-      locationByZip: new FormControl(''),
+      locationByZip: new FormControl(this.zipCountryForm, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(10)
+      ]),
       locationByCountry: new FormControl(this.zipCountryForm, [
         Validators.required,
         Validators.minLength(2),
