@@ -25,12 +25,12 @@ export class OpenweathermapService {
     );
   }
 
-  getWeatherByZip(values) {
-    return this.http.get(
-      'https://api.openweathermap.org/data/2.5/weather?zip=' + values.locationByZip +
-      '&units=imperial&appid=' + this.apiKey
-    );
-  }
+  // getWeatherByZip(values) {
+  //   return this.http.get(
+  //     'https://api.openweathermap.org/data/2.5/weather?zip=' + values.locationByZip +
+  //     '&units=imperial&appid=' + this.apiKey
+  //   );
+  // }
 
   getWeatherByZipAndCountry(values) {
     return this.http.get(

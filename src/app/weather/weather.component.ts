@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import { OpenweathermapService } from '../openweathermap.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {OpenweathermapService} from '../openweathermap.service';
 
 @Component({
   selector: 'app-weather',
@@ -29,9 +29,13 @@ export class WeatherComponent implements OnInit {
       locationByCityAndCountry: ['']
     });
 
-    this.zipCountryForm = new FormGroup( {
+    this.zipCountryForm = new FormGroup({
       locationByZip: new FormControl(''),
-      locationByCountry: new FormControl('')
+      locationByCountry: new FormControl(this.zipCountryForm, [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(2)
+      ])
     });
 
     this.latAndLonForm = new FormGroup({
@@ -63,15 +67,9 @@ export class WeatherComponent implements OnInit {
   }
 
   sendZipAndCountryToOpenWeatherMap(formValues) {
-    if (formValues.locationByCountry === null || formValues.locationByCountry === '') {
-      this.openweathermapService
-        .getWeatherByZip(formValues.value)
-        .subscribe(data => this.weatherData = data);
-    } else {
-      this.openweathermapService
-        .getWeatherByZipAndCountry(formValues.value)
-        .subscribe(data => this.weatherData = data);
-    }
+    this.openweathermapService
+      .getWeatherByZipAndCountry(formValues.value)
+      .subscribe(data => this.weatherData = data);
     this.zipCountryForm.reset();
   }
 
